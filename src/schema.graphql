@@ -1,0 +1,51 @@
+type Query {
+  info: String!
+  getEmployees(skip:Int, take:Int, search: EmployeeSearchInput, orderBy: orderByInput): getEmployeesOutput
+}
+
+type Mutation {
+  signup(
+    firstName: String!
+    lastName: String!
+    emailId: String!
+    employeeId: String!
+    password: String!
+    organizationName: String!
+  ): AuthPayload
+  login(emailId: String!, password: String!): AuthPayload
+}
+
+input EmployeeSearchInput{
+  firstName: String
+  lastName: String
+  employeeId: String
+}
+
+input orderByInput {
+  field: String
+  order: String
+}
+
+type AuthPayload {
+  token: String
+  employee: Employee
+}
+
+type getEmployeesOutput {
+  count: Int
+  employees: [Employee]
+}
+
+type Employee {
+  id: ID!
+  firstName:String!
+  lastName:String!
+  emailId:String!
+  employeeId:String!
+  password:String!
+  organizationName:String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+scalar DateTime

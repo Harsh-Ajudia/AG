@@ -1,0 +1,56 @@
+SignUp---
+mutation{
+  signup(
+    firstName:"harsh"
+    lastName:"ajudia"
+    emailId:"harsh@gmail.com"
+    employeeId:"EMP123"
+    password:"Admin@123"
+    organizationName:"Neosoft"
+  ){
+    token,
+    employee{
+      name
+    }
+  }
+}
+================================================
+Login---
+mutation{
+  login(
+    emailId:"harsh@gmail.com"
+    password:"Admin@123"
+  ){
+    token
+    employee{
+      id
+    }
+  }
+}
+================================================
+Get Employeers with searching, sorting and filtering---
+query{
+  getEmployees(
+    search:{
+      firstName:"an"
+    }
+    skip:0
+    take:10
+    orderBy:{
+      field:"firstName"
+      order:"desc"
+    }
+  ){
+    count
+    employees{
+      firstName
+      lastName
+      employeeId
+    }
+  }
+}
+
+Note: for this API we must supplu Auth Header
+{ 
+	"authorization":"dummyToken"
+}
